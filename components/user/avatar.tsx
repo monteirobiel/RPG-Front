@@ -1,7 +1,15 @@
 import { Avatar } from "@nextui-org/avatar";
 import { Link } from "@nextui-org/link";
+import { CameraIcon } from "../CameraIcon";
 
-const AvatarUser = () => {
+interface AvatarUserProps {
+  size: "sm" | "md" | "lg" | "xl" | undefined;
+  className?: string;
+  src?: string;
+  color?: "secondary" | "success" | "warning" | "error" | "info" | "default";
+}
+
+const AvatarUser = ({ size, className, src, color }: AvatarUserProps) => {
 const randomColor = () => {
   const colors = [
     "secondary",
@@ -18,10 +26,16 @@ const randomColor = () => {
   <div>
    <Link href="/login">
      <Avatar 
-      name="convidado" 
-      className="cursor-pointer hover:scale-90 transition-transform duration-200" 
+      showFallback
+      name="user"
+      fallback={
+        <CameraIcon className="animate-pulse w-12 h-12 text-default-500" fill="currentColor" size={20} />
+      }
+      size={size}
+      className={`cursor-pointer hover:scale-90 transition-transform duration-200 ${className}`} 
       isBordered 
-      color={randomColor()} src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
+      color={color ?? randomColor()} 
+      src={src} />
    </Link>
   </div>
  )
