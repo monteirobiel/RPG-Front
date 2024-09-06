@@ -14,6 +14,8 @@ const Login = () => {
   const variants = ["flat", "bordered", "underlined", "faded"];
 
   return (
+    <DefaultLayout>
+
     <section className="absolute inset-0 flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="max-w-lg text-center justify-center  flex flex-col gap-4">
         <Avatar 
@@ -49,6 +51,7 @@ const Login = () => {
       </Button>
       </div>
     </section>
+    </DefaultLayout>
   );
 }
 

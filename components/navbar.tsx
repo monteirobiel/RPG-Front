@@ -81,8 +81,8 @@ export const Navbar = () => {
           <ThemeSwitch />
         </NavbarItem>*/}
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
-        <NavbarItem className="hidden md:flex">
-          <Avatar size="md" />
+        <NavbarItem className="hidden md:flex mt-1">
+          <Avatar size="md" src="https://i.pravatar.cc/150?u=a04258114e29026708c" />
         </NavbarItem>
 
         {/*<NavbarItem className="hidden md:flex">
