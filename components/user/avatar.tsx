@@ -1,6 +1,7 @@
 import { Avatar } from "@nextui-org/avatar";
 import { Link } from "@nextui-org/link";
 import { CameraIcon } from "../CameraIcon";
+import { useEffect, useMemo } from "react";
 
 interface AvatarUserProps {
   size: "sm" | "md" | "lg" | "xl" | undefined;
@@ -10,19 +11,19 @@ interface AvatarUserProps {
 }
 
 const AvatarUser = ({ size, className, src, color }: AvatarUserProps) => {
-const randomColor = () => {
-  const colors = [
-    "secondary",
-    "success",
-    "warning",
-    "error",
-    "info",
-    "default",
-  ];
-  return colors[Math.floor(Math.random() * colors.length)];
-}
+  const colorAvatar = useMemo(() => {
+    const colors = [
+      "secondary",
+      "success",
+      "warning",
+      "error",
+      "info",
+      "default",
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }, [src])
 
- return (
+  return (
   <div>
    <Link href="/login">
      <Avatar 
@@ -34,7 +35,7 @@ const randomColor = () => {
       size={size}
       className={`cursor-pointer hover:scale-90 transition-transform duration-200 ${className}`} 
       isBordered 
-      color={color ?? randomColor()} 
+      color={color ?? colorAvatar} 
       src={src} />
    </Link>
   </div>
