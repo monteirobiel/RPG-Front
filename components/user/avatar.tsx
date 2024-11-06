@@ -4,20 +4,20 @@ import { CameraIcon } from "../CameraIcon";
 import { useEffect, useMemo } from "react";
 
 interface AvatarUserProps {
-  size: "sm" | "md" | "lg" | "xl" | undefined;
+  size: "sm" | "md" | "lg" | undefined;
   className?: string;
   src?: string;
-  color?: "secondary" | "success" | "warning" | "error" | "info" | "default";
+  color?: "secondary" | "success" | "warning" | "default" | "primary" | "danger";
 }
 
 const AvatarUser = ({ size, className, src, color }: AvatarUserProps) => {
   const colorAvatar = useMemo(() => {
-    const colors = [
+    const colors: AvatarUserProps["color"][] = [
       "secondary",
       "success",
       "warning",
-      "error",
-      "info",
+      "primary",
+      "danger",
       "default",
     ];
     return colors[Math.floor(Math.random() * colors.length)];
@@ -30,7 +30,7 @@ const AvatarUser = ({ size, className, src, color }: AvatarUserProps) => {
       showFallback
       name="user"
       fallback={
-        <CameraIcon className="animate-pulse w-12 h-12 text-default-500" fill="currentColor" size={20} />
+        <CameraIcon className="animate-pulse w-12 h-12 text-default-500" fill="currentColor" size={20} height={undefined} width={undefined} />
       }
       size={size}
       className={`cursor-pointer hover:scale-90 transition-transform duration-200 ${className}`} 
