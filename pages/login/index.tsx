@@ -39,21 +39,11 @@ const Login = () => {
           <Input
           {...register("email")}
             isRequired
-            type="email"
-            label="Email"
+            type="email or username"
+            label="Email or Username"
             variant="bordered"
             className="max-w-xs mb-4 "
-          />
-          
-
-          <Input
-          {...register("username")}
-            isRequired
-            type="username"
-            label="Username"
-            variant="bordered"
-            className="max-w-xs mb-4"
-          />        
+          />       
 
           <Input
             {...register("password")}
