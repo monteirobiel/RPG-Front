@@ -6,8 +6,10 @@ import DefaultLayout from "@/layouts/default";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import React from "react";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const { register, handleSubmit } = useForm();
   const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const variants: Array<"flat" | "bordered" | "underlined" | "faded"> = [
@@ -16,6 +18,12 @@ const Login = () => {
     "underlined",
     "faded",
   ];
+  
+
+  function handleSignIn(data: any) {
+    console.log(data);
+  }
+
 
   return (
     <DefaultLayout>
@@ -27,24 +35,30 @@ const Login = () => {
             <p className="text-2xl font-roboto font-bold">Welcome Back</p>
           </div>
 
+          <form action="#" method="POST" className="space-y-6" onSubmit={handleSubmit(handleSignIn)}>
           <Input
+          {...register("email")}
             isRequired
             type="email"
             label="Email"
             variant="bordered"
-            className="max-w-xs "
+            className="max-w-xs mb-4 "
           />
+          
 
           <Input
+          {...register("username")}
             isRequired
             type="username"
             label="Username"
             variant="bordered"
-            className="max-w-xs "
+            className="max-w-xs mb-4"
           />        
 
           <Input
+            {...register("password")}
             isRequired
+            type="password"
             label="Password"
             variant="bordered"
             className=""
@@ -60,18 +74,20 @@ const Login = () => {
           <div className="text-xs pt-6">
             <a
               href="#"
-              className="flex justify-end -mt-9 font-semibold text-indigo-600 hover:text-indigo-500"
+              className="flex justify-end -mt-5 font-semibold text-indigo-600 hover:text-indigo-500"
             >
               Forgot your password?
             </a>
           </div>
 
           <Button
-            className="h-12 -mt-2 text-md font-roboto font-semibold"
+          type="submit"
+            className="h-12 mt-6 w-full text-md font-roboto font-semibold"
             color="primary"
           >
             Logar
           </Button>
+          
 
           <div className="text-xs flex px-5 font-montserrat font-semibold">
             <p className="">Don't have an account?</p>
@@ -82,6 +98,7 @@ const Login = () => {
               Create an account
             </a>
           </div>
+          </form>
         </div>
       </section>
     </DefaultLayout>
