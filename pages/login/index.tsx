@@ -11,7 +11,7 @@ import React from "react";
 const Login = () => {
   const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
-  const variants = ["flat", "bordered", "underlined", "faded"];
+  const variants: Array<"flat" | "bordered" | "underlined" | "faded"> = ["flat", "bordered", "underlined", "faded"];
 
   return (
     <DefaultLayout>
