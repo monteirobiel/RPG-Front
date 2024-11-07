@@ -15,18 +15,26 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import * as yup from "yup";
-import { object } from "yup";
+
+const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
 const schema = yup.object({
-  email: yup.string().required("Email or Username is required"),
+  email: yup
+    .string()
+    .required("Email or Username is required")
+    .test(
+      "is-email-or-username",
+      "Invalid email format",
+      (value) => !value || (!value.includes("@") || emailRegex.test(value))
+    ),
   password: yup
     .string()
     .required("Password is required")
-    .min(8, "Your password must be at least 6 characters")
+    .min(6, "Your password must be at least 6 characters")
     .max(20, "Password must be no more than 20 characters long")
     .matches(/[A-Z]/, "Must contain at least one uppercase letter")
     .matches(/[a-z]/, "Must contain at least one lowercase letter")
-    .matches(/[0-9]/, "Must contain at least one number")
+    .matches(/[0-9]/, "Must contain at least one number"),
 });
 
 type FormData = {
@@ -45,12 +53,6 @@ const Login = () => {
 
   const [isVisible, setIsVisible] = React.useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
-  const variants: Array<"flat" | "bordered" | "underlined" | "faded"> = [
-    "flat",
-    "bordered",
-    "underlined",
-    "faded",
-  ];
 
   function handleSignIn(data: any) {
     if (!data.email.includes("@")) {
