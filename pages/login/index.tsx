@@ -55,9 +55,6 @@ const Login = () => {
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   function handleSignIn(data: any) {
-    if (!data.email.includes("@")) {
-      data = { username: data.email, password: data.password };
-    }
     console.log(data);
   }
 
