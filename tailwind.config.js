@@ -13,6 +13,9 @@ module.exports = {
       fontFamily: {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
+        roboto: ["Roboto"],
+        montserrat: ["Montserrat"],
+        
       },
     },
   },
